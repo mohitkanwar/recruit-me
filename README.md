@@ -1,7 +1,7 @@
 # recruit-me
 This is a webapp which is used to manage recruitment process in an organization.
 
-# Types of users
+# User Roles
 * Recruiter
 * Applicant
 * Referrer
@@ -28,18 +28,25 @@ An Applicant can apply directly to the Job, or can be referred by a referrer. To
  
  # Domain Model
  * Job Post
-    * Job Description
-      * Job Title
-      * List of Experience Areas
-    * Experience Area
+ * Job Description
+    * Job Title
+    * List of Experience Areas
+ * Experience Area
         * Area
-        * Years of experience
+        * Pet Questions
  * Interview Process Chain
     * Interview Process
       * Time
       * Test
  * Ratings
- 
+ * Users
+ * User Roles
+    * Recruiter
+    * Applicant
+    * Referrer
+    * Interviewer
+    * Manager
+    
  # APIs
  GET    /jobs  
  GET    /job/{job-id}  
@@ -60,4 +67,13 @@ An Applicant can apply directly to the Job, or can be referred by a referrer. To
  GET    /recruiter/{recruiter-id}  
  PUT    /recruiter/{recruiter-id}  
  POST   /recruiter/{recruiter-id}  
+ GET    /zoneofexperience/{zone-id}  
+ PUT    /zoneofexperience/{zone-id}   
+ POST   /zoneofexperience/{zone-id}   
+ GET    /interviewprocess/{process-id}  
+ PUT    /interviewprocess/{process-id}   
+ POST   /interviewprocess/{process-id}  
+ GET    /interviewprocesschain/{process-chain-id}  
+ PUT    /interviewprocesschain/{process-chain-id}   
+ POST   /interviewprocesschain/{process-chain-id}  
  POST   /login  
