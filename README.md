@@ -41,23 +41,23 @@ An Applicant can apply directly to the Job, or can be referred by a referrer. To
  * Ratings
  
  # APIs
- GET    /jobs
- GET    /job/{job-id}
- PUT    /job/{job-id}
- POST   /job/{job-id}
- GET    /job/applicants
- GET    /applicant/{applicant-id}
- PUT    /applicant/{applicant-id}
- POST   /applicant/{applicant-id}
- PUT    /job/{job-id}/applicant/{applicant-id}
- POST   /job/{job-id}/applicant/{applicant-id}
- GET    /panel/{panel-id}
- PUT    /panel/{panel-id}
- POST   /panel/{panel-id}
- GET    /manager/{manager-id}
- PUT    /manager/{manager-id}
- POST   /manager/{manager-id}
- GET    /recruiter/{recruiter-id}
- PUT    /recruiter/{recruiter-id}
- POST   /recruiter/{recruiter-id}
- POST   /login
+ GET    /jobs  
+ GET    /job/{job-id}  
+ PUT    /job/{job-id}  
+ POST   /job/{job-id}  
+ GET    /job/applicants  
+ GET    /applicant/{applicant-id}  
+ PUT    /applicant/{applicant-id}  
+ POST   /applicant/{applicant-id}  
+ PUT    /job/{job-id}/applicant/{applicant-id}  
+ POST   /job/{job-id}/applicant/{applicant-id}  
+ GET    /panel/{panel-id}  
+ PUT    /panel/{panel-id}  
+ POST   /panel/{panel-id}  
+ GET    /manager/{manager-id}  
+ PUT    /manager/{manager-id}  
+ POST   /manager/{manager-id}  
+ GET    /recruiter/{recruiter-id}  
+ PUT    /recruiter/{recruiter-id}  
+ POST   /recruiter/{recruiter-id}  
+ POST   /login  
