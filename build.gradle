@@ -1,0 +1,87 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+apply plugin: "jacoco"
+
+group 'com.mk.recruitme'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+
+	maven {
+		url 'file:'+System.getenv('HOME')+'/.m2/repository'
+	}
+	mavenCentral()
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	compile('org.apache.camel:camel-spring-boot-starter:2.19.1')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.session:spring-session')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('com.h2database:h2')
+	compileOnly('org.projectlombok:lombok')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile ('junit:junit:4.12')
+}
+
+
+findbugs {
+	ignoreFailures = true
+	toolVersion = "3.0.1"
+	sourceSets = [sourceSets.main]
+	reportsDir = file("$project.buildDir/reports/findbugs")
+	effort = "max"
+}
+
+pmd {
+	ignoreFailures = true
+	toolVersion = '5.8.1'
+	sourceSets = [sourceSets.main]
+	reportsDir = file("$project.buildDir/reports/pmd")
+}
+// add CPD to check
+check << {
+	File outDir = new File('build/reports/pmd/')
+	outDir.mkdirs()
+	ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
+			classpath: configurations.pmd.asPath)
+	ant.cpd(minimumTokenCount: '100', format: 'xml',
+			outputFile: new File(outDir , 'cpd.xml')) {
+		fileset(dir: "src/main/java") {
+			include(name: '**/*.java')
+		}
+	}
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination "$project.buildDir/reports/jacoco/"
+	}
+}
